@@ -2,8 +2,9 @@
   "name": "tomodo-action-example",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "mocha './src/**/*.test.js'"
+    "test": "mocha './src/**/*.test.mjs'"
   },
   "keywords": [],
   "author": "",
