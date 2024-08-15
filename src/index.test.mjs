@@ -31,10 +31,8 @@ const seedData = async () => {
 };
 
 const waitForIndexBuildCompletion = async (maxWaitTime = 5000, interval = 1000) => {
-    // await client.db("onlineShop").collection("products").getSearchIndexes("itemsSearch");
     const startTime = Date.now();
     while (true) {
-        // const result = await client.db("onlineShop").collection("products").getSearchIndexes("itemsSearch");
         const result = await client.db("onlineShop").collection("products").listSearchIndexes().toArray();
 
         const indexes = result.filter(ix => ix.name === "itemsSearch");
