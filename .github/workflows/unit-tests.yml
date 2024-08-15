@@ -1,0 +1,28 @@
+name: Run unit test
+on: [ push ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Start a MongoDB Atlas container
+        id: tomodo
+        uses: yuvalherziger/tomodo-github-action@v1
+        with:
+          type: "atlas"
+          username: "unittest"
+          password: "supersecret"
+
+      - run: npm install
+
+      - name: Run tests
+        run: npm test
+        env:
+          MONGODB_URI: ${{ steps.tomodo.outputs.connection-string }}

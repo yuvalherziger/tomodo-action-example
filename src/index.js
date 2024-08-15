@@ -24,12 +24,8 @@ export async function createProductsSearchIndex() {
             }
         }
     };
-    const searchIndex = {
-        definition,
-        type: "search",
-        name: "itemsSearch"
-    };
-    await client.db("onlineShop").collection("products").createSearchIndex(searchIndex);
+    
+    await client.db("onlineShop").collection("products").createSearchIndex("itemsSearch", definition);
     console.log("Atlas Search index created");
 }
 
